@@ -1,0 +1,115 @@
+{
+    "name": "lexthink/php-skeleton",
+    "description": "This package provides a basic configuration to start building your next project using Symfony",
+    "type": "project",
+    "keywords": ["lexthink", "php", "skeleton", "package", "basic", "project", "symfony", "docker"],
+    "homepage": "https://github.com/lexthink/php-skeleton",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Manuel Alejandro Paz Cetina",
+            "email": "lexthink@icloud.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "doctrine/doctrine-bundle": "^2.3",
+        "doctrine/doctrine-migrations-bundle": "^3.1",
+        "doctrine/orm": "^2.8",
+        "sensio/framework-extra-bundle": "^6.1",
+        "symfony/console": "^5.2",
+        "symfony/dotenv": "^5.2",
+        "symfony/expression-language": "^5.2",
+        "symfony/flex": "^1.12",
+        "symfony/form": "^5.2",
+        "symfony/framework-bundle": "^5.2",
+        "symfony/mailer": "^5.2",
+        "symfony/messenger": "^5.2",
+        "symfony/monolog-bundle": "^3.7",
+        "symfony/options-resolver": "^5.2",
+        "symfony/security-bundle": "^5.2",
+        "symfony/translation": "^5.2",
+        "symfony/twig-bundle": "^5.2",
+        "symfony/uid": "^5.2",
+        "symfony/validator": "^5.2",
+        "symfony/yaml": "^5.2"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.18",
+        "phpstan/phpstan": "^0.12",
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "^3.6",
+        "symfony/debug-bundle": "^5.2",
+        "symfony/phpunit-bridge": "^5.2",
+        "symfony/stopwatch": "^5.2",
+        "symfony/var-dumper": "^5.2",
+        "symfony/web-profiler-bundle": "^5.2"
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php80": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ],
+        "dev:check-style": [
+            "vendor/bin/php-cs-fixer fix --ansi --dry-run --verbose",
+            "vendor/bin/phpcs"
+        ],
+        "dev:fix-style": [
+            "vendor/bin/php-cs-fixer fix --ansi --verbose",
+            "vendor/bin/phpcbf"
+        ],
+        "dev:tests": [
+            "@dev:check-style",
+            "@dev:phpunit",
+            "@dev:phpstan"
+        ],
+        "dev:phpstan": "vendor/bin/phpstan analyse --ansi --verbose",
+        "dev:phpunit": "vendor/bin/phpunit --testdox --verbose --stop-on-failure",
+        "dev:coverage": "@php -dzend_extension=xdebug.so -dxdebug.mode=coverage vendor/bin/phpunit --coverage-html var/coverage/html/"
+    },
+    "scripts-descriptions": {
+        "dev:check-style": "DEV: search for code style errors using php-cs-fixer and phpcs",
+        "dev:fix-style": "DEV: fix code style errors using php-cs-fixer and phpcbf",
+        "dev:tests": "DEV: run @dev:check-style, @dev:phpunit and @dev:phpstan",
+        "dev:phpstan": "DEV: run static analysis using phpstan",
+        "dev:phpunit": "DEV: run tests using phpunit",
+        "dev:coverage": "DEV: run phpunit with xdebug and storage coverage in var/coverage/html/"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "5.2.*"
+        }
+    }
+}
